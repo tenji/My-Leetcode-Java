@@ -22,7 +22,10 @@ public class MinCostClimbingStairs746 {
 
     public int minCostClimbingStairs(int[] cost) {
         /*
-        动态规划，dp[i] 表示到达第 i 个台阶需要支付的费用，dp[0] = 0, dp[1] = 0，因为可以从第 0 或者第 1 台阶开始爬楼梯
+        动态规划。
+
+        定义状态（定义子问题）：dp[i] 表示到达第 i 个台阶需要支付的费用，dp[0] = 0, dp[1] = 0，因为可以从第 0 或者第 1 台阶开始爬楼梯
+        状态转移方程：dp[i] = Math.min(dp[i - 1] + cost[i - 1], (dp[i - 2] + cost[i - 2]));
          */
 
         if (cost.length == 1) {
@@ -39,10 +42,6 @@ public class MinCostClimbingStairs746 {
         dp[2] = Math.min(cost[0], cost[1]);
 
         for (int i = 3; i <= cost.length; i++) {
-            if (i == cost.length) {
-                dp[i] = Math.min(dp[i - 1] + cost[i - 1], (dp[i - 2] + cost[i - 2]));
-                break;
-            }
 
             dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
         }
