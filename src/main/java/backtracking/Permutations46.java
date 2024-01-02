@@ -30,13 +30,16 @@ public class Permutations46 {
 
         // 记录“路径”
         LinkedList<Integer> track = new LinkedList<>();
-        // “路径”中的元素会被标记为 true，避免重复使用，充当“选择列表”作用
+        // “路径”中的元素会被标记为 true，避免重复使用，配合 nums 充当“选择列表”作用
         boolean[] used = new boolean[nums.length];
         backtrack(nums, track, used);
 
         return res;
     }
 
+    // 路径：记录在 track 中
+    // 选择列表：nums 中不存在于 track 的那些元素（used[i] 为 false）
+    // 结束条件：nums 中的元素全都在 track 中出现
     private void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
         // 满足结束条件
         if (track.size() == nums.length) {
