@@ -25,7 +25,7 @@ public class Permutations46 {
 
     public List<List<Integer>> permute(int[] nums) {
         /*
-        排列问题，使用回溯算法处理
+        排列问题（元素无重不可复选），使用回溯算法处理
          */
 
         // 记录“路径”

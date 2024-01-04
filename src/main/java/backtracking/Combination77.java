@@ -37,7 +37,7 @@ public class Combination77 {
 
     public List<List<Integer>> combine(int n, int k) {
         /*
-        组合问题，使用回溯算法处理
+        组合问题（元素无重不可复选），使用回溯算法处理
          */
 
         // 记录“路径”
@@ -61,8 +61,14 @@ public class Combination77 {
 
         for (int i = 1; i <= n; i++) {
             // 排除不合法的选择
-            if (used.contains(i) || (!used.isEmpty() && i <= used.peekLast())) {
+            if (used.contains(i)) {
                 // 已经在“路径”中，或者比“路径”中的元素小，跳过
+                continue;
+            }
+
+            // 剪枝逻辑
+            if (!used.isEmpty() && i <= used.peekLast()) {
+                // 比“路径”中的元素小，跳过
                 continue;
             }
 
