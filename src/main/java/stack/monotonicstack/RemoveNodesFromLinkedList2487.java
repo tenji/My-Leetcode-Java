@@ -1,5 +1,7 @@
 package stack.monotonicstack;
 
+import linkedlist.ListNode;
+
 import java.util.*;
 
 /**
@@ -61,22 +63,5 @@ public class RemoveNodesFromLinkedList2487 {
         }
 
         return res.next;
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }
