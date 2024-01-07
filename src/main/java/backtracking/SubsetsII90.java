@@ -1,32 +1,35 @@
 package backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 78. 子集
+ * 90. 子集 II
  *
  * @author tenji
- * @date 2024-01-03
+ * @date 2024-01-07
  */
-public class Subsets78 {
+public class SubsetsII90 {
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
-        // 输入：nums = [1,2,3]
-        // 输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+        int[] nums = {1, 2, 2};
+        // 输入：nums = [1,2,2]
+        // 输出：[[],[1],[1,2],[1,2,2],[2],[2,2]]
 
-        System.out.println(new Subsets78().subsets(nums));
+        System.out.println(new SubsetsII90().subsetsWithDup(nums));
     }
 
     List<List<Integer>> res = new ArrayList<>();
 
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
         /*
-        子集问题（元素无重不可复选），使用回溯算法处理
+        子集问题（元素可重不可复选），使用回溯算法处理
          */
 
+        // 先排序，保证相同元素挨在一起
+        Arrays.sort(nums);
         // 记录“路径”
         LinkedList<Integer> track = new LinkedList<>();
         // nums 和 start 充当“选择列表”作用
@@ -41,11 +44,13 @@ public class Subsets78 {
 
         for (int i = start; i < nums.length; i++) {
 
-            // 做选择
+            // 剪枝逻辑，重复元素不选
+            if (i > start && nums[i] == nums[i - 1]) {
+                continue;
+            }
+
             track.add(nums[i]);
-            // 进入下一层决策树
             backtrack(nums, track, i + 1);
-            // 撤销选择
             track.removeLast();
         }
     }
